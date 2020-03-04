@@ -1,4 +1,4 @@
-package com.londonappbrewery.quizzler;
+package com.cybernami.quizzler;
 
 import org.junit.Test;
 
