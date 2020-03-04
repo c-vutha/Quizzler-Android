@@ -42,11 +42,18 @@ public class MainActivity extends Activity {
 
     // TODO: Declare constants here
     public final int QUESTION_LENGTH = mQuestionBank.length;
+    public static final String SCORE_KEY = "SCORE_KEY";
+    public static final String INDEX_KEY = "INDEX_KEY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (savedInstanceState != null) {
+            mScore = savedInstanceState.getInt(SCORE_KEY);
+            mIndex = savedInstanceState.getInt(INDEX_KEY);
+        }
 
         mTrueButton = findViewById(R.id.true_button);
         mFalseButton = findViewById(R.id.false_button);
@@ -136,5 +143,13 @@ public class MainActivity extends Activity {
         mQuestionTextView.setText(question);
         mProgressBar.setProgress(mIndex);
         mScoreTextView.setText(getString(R.string.score_format, mScore, QUESTION_LENGTH));
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putInt(SCORE_KEY, mScore);
+        outState.putInt(INDEX_KEY, mIndex);
     }
 }
